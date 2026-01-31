@@ -69,7 +69,7 @@ export class ProductFormComponent implements OnInit {
       price: [0, [Validators.required, Validators.min(0.01)]],
       description: ['', [Validators.required]],
       image: [
-        { value: 'https://picsum.photos/seed/picsum/500', disabled: true },
+        'https://picsum.photos/seed/picsum/500',
         [Validators.required],
       ],
       category: ['', [Validators.required]],
