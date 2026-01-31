@@ -1,0 +1,23 @@
+<div class="app-container">
+  <mat-toolbar color="primary" class="navbar">
+    <span class="title">KALIIK</span>
+
+    <span class="spacer"></span>
+
+    <div class="nav-buttons">
+      <button class="catalog-button" mat-button routerLink="/products">
+        <span>Catálogo</span>
+      </button>
+
+      <button class="logout-button" mat-icon-button (click)="logout()" title="Cerrar Sesión">
+        <mat-icon>logout</mat-icon>
+      </button>
+    </div>
+  </mat-toolbar>
+
+  <div class="content">
+    <div class="page-wrapper">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

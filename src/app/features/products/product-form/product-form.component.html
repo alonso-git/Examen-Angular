@@ -1,0 +1,75 @@
+<div class="form-container">
+  <mat-card class="form-card">
+    <mat-card-header>
+      <mat-card-title>
+        {{ isEditMode() ? 'Editar producto' : 'Nuevo producto' }}
+      </mat-card-title>
+    </mat-card-header>
+
+    <mat-card-content>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <mat-form-field class="full-width">
+          <mat-label>Nombre del producto</mat-label>
+          <input matInput formControlName="title" placeholder="Ej. Mochila Premium" />
+          @if (form.get('title')?.hasError('required')) {
+            <mat-error>El nombre es obligatorio</mat-error>
+          }
+        </mat-form-field>
+        <div class="row">
+          <mat-form-field class="half-width">
+            <mat-label>Precio</mat-label>
+            <input matInput type="number" formControlName="price" />
+            <span matTextPrefix>$&nbsp;</span>
+            @if (form.get('price')?.hasError('min')) {
+              <mat-error>El precio debe ser mayor a 0</mat-error>
+            }
+          </mat-form-field>
+
+          <mat-form-field class="half-width">
+            <mat-label>Categoria</mat-label>
+            <mat-select formControlName="category" panelClass="select-panel">
+              @for (cat of categories(); track cat) {
+                <mat-option [value]="cat">{{ cat | titlecase }}</mat-option>
+              }
+            </mat-select>
+            @if (form.get('category')?.hasError('required')) {
+              <mat-error>Selecciona una categoria</mat-error>
+            }
+          </mat-form-field>
+        </div>
+
+        <mat-form-field class="full-width">
+          <mat-label>Descripcion</mat-label>
+          <input matInput formControlName="description" type="text" />
+          @if (form.get('description')?.hasError('required')) {
+            <mat-error>La descripcion es obligatoria</mat-error>
+          }
+        </mat-form-field>
+
+        <mat-form-field class="full-width">
+          <mat-label>URL de la imagen</mat-label>
+          <input matInput formControlName="image" [disabled]="true" />
+        </mat-form-field>
+
+        <div class="actions">
+          <button mat-button type="button" routerLink="/products">Cancelar</button>
+
+          <button
+            mat-flat-button
+            color="primary"
+            type="submit"
+            [disabled]="form.invalid || isSaving()"
+          >
+            @if (isSaving()) {
+              <div class="spinner-container">
+                <mat-spinner diameter="20" color="accent"></mat-spinner>Guardando...
+              </div>
+            } @else {
+              {{ isEditMode() ? 'Actualizar' : 'Crear' }}
+            }
+          </button>
+        </div>
+      </form>
+    </mat-card-content>
+  </mat-card>
+</div>

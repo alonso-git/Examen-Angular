@@ -1,0 +1,92 @@
+:root {
+  // Color constants
+  --kaliik-warning: #ff4b5c;
+
+  --card-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1), 0 2px 4px -1px rgba(0, 0, 0, 0.1);
+
+  // Institutional color palette (extracted from Kaliik CSS)
+  --kaliik-primary: #6a4bfe;
+  --kaliik-secondary: #6127a3;
+  --kaliik-tertiary: #9b34c7;
+
+  // Accent
+  --kaliik-accent: #00c9a7;
+
+  // Text
+  --text-dark: #333333;
+  --text-body: #77838f;
+  --text-muted: #8c98a4;
+
+  // Background
+  --bg-light: #f8f9fb;
+
+  // Defifned gradients (based on those extracted from CSS)
+  --gradient-primary: linear-gradient(
+    to right,
+    var(--kaliik-tertiary) 0%,
+    var(--kaliik-secondary) 51%,
+    var(--kaliik-primary) 100%
+  );
+
+  // Modificado por simplicidad (dos steps en lugar de tres)
+  --gradient-header: linear-gradient(
+    to right,
+    var(--kaliik-tertiary) 0%,
+    var(--kaliik-primary) 100%
+  );
+}
+
+html,
+body {
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow-x: hidden;
+  box-sizing: border-box;
+  font-family: Roboto, 'Helvetica Neue', sans-serif;
+  background-color: var(--bg-light);
+}
+
+*,
+*:before,
+*:after {
+  box-sizing: inherit;
+}
+
+.select-panel {
+  background-color: white !important;
+  border-radius: 16px !important;
+  margin-top: 8px;
+  box-shadow: var(--card-shadow);
+
+  .mat-mdc-option {
+    color: var(--text-body) !important;
+    font-weight: 500;
+    min-height: 40px;
+
+    &:hover,
+    &.mat-mdc-option-active {
+      background-color: color-mix(in srgb, var(--kaliik-primary), transparent 70%) !important;
+    }
+
+    &.mdc-list-item--selected {
+      background-color: var(--kaliik-primary) !important;
+      letter-spacing: 1px;
+
+      .mdc-list-item__primary-text {
+        color: var(--bg-light) !important;
+        font-weight: 600;
+      }
+    }
+  }
+}
+
+.dialog-container {
+  .mat-mdc-dialog-container {
+    .mat-mdc-dialog-surface {
+      border-radius: 24px !important;
+      padding: 0;
+      background-color: var(--bg-light);
+    }
+  }
+}

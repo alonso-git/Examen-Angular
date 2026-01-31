@@ -1,0 +1,65 @@
+h2[mat-dialog-title] {
+  font-size: 2rem;
+  font-weight: 500;
+  letter-spacing: 1px;
+  color: var(--kaliik-tertiary);
+  text-align: center;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 1rem;
+}
+
+mat-dialog-content {
+  padding: 1rem;
+  margin-bottom: 0.5rem;
+  display: flex;
+  flex-direction: column;
+  font-size: 0.5rem;
+
+  p:first-child {
+    color: var(--text-body);
+    font-size: 1rem;
+    font-weight: 500;
+    letter-spacing: 0.5px;
+    line-height: 2rem;
+    text-align: center;
+  }
+
+  p:last-child {
+    font-size: 1rem;
+    color: var(--text-body);
+  }
+}
+
+mat-dialog-actions {
+  padding: 1rem;
+
+  button[mat-button] {
+    height: 45px;
+    text-transform: uppercase;
+
+    color: color-mix(in srgb, var(--kaliik-warning) 70%, transparent) !important;
+    background-color: color-mix(in srgb, var(--kaliik-warning), transparent 90%);
+    font-weight: 500;
+
+    &:hover {
+      transform: scale(1.05);
+    }
+  }
+
+  button[mat-flat-button] {
+    height: 45px;
+    text-transform: uppercase;
+
+    color: var(--kaliik-tertiary) !important;
+    background-color: color-mix(in srgb, var(--kaliik-tertiary), transparent 75%);
+    font-weight: 500;
+
+    &:hover {
+      transform: scale(1.05);
+      background-color: color-mix(in srgb, var(--kaliik-primary), transparent 75%);
+    }
+  }
+}

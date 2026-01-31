@@ -1,0 +1,75 @@
+<div class="container">
+  <div class="header-actions">
+    <h2>Catalogo de Productos</h2>
+    <div class="filters-container">
+      <mat-form-field class="search-bar" subscriptSizing="dynamic">
+        <mat-icon matPrefix>search</mat-icon>
+        <input matInput [(ngModel)]="searchQuery" placeholder="Nombre del producto" />
+        @if (searchQuery()) {
+          <button matIconButton matSuffix (click)="searchQuery.set('')" class="close-button">
+            <mat-icon>close</mat-icon>
+          </button>
+        }
+      </mat-form-field>
+      <mat-form-field class="category-select" subscriptSizing="dynamic">
+        <mat-select [(ngModel)]="selectedCategory" panelClass="select-panel">
+          <mat-option value="">Todas las categorias</mat-option>
+          @for (cat of categories(); track cat) {
+            <mat-option [value]="cat">{{ cat | titlecase }}</mat-option>
+          }
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <button mat-flat-button color="primary" routerLink="/products/add" class="add-button">
+      <mat-icon>add</mat-icon> Nuevo Producto
+    </button>
+  </div>
+
+  @if (isLoading()) {
+    <div class="spinner-container">
+      <mat-spinner diameter="50"></mat-spinner>
+    </div>
+  } @else {
+    <div class="product-grid">
+      @for (product of filteredProducts(); track product.id) {
+        <mat-card class="product-card">
+          <div class="image-wrapper">
+            <img class="image-container" [src]="product.image" [alt]="product.title" />
+          </div>
+          <mat-card-content>
+            <span class="category">{{ product.category | uppercase }}</span>
+
+            <h3 class="title" [title]="product.title">
+              {{ product.title | slice: 0 : 30 }}{{ product.title.length > 30 ? '...' : '' }}
+            </h3>
+
+            <span class="price">{{ product.price | currency }}</span>
+          </mat-card-content>
+
+          <mat-card-actions>
+            <button
+              mat-icon-button
+              color="primary"
+              [routerLink]="['/products/edit', product.id]"
+              class="action-button edit-button"
+            >
+              <mat-icon>edit</mat-icon>
+            </button>
+            <button
+              mat-icon-button
+              color="warn"
+              (click)="deleteProduct(product.id)"
+              class="action-button delete-button"
+            >
+              <mat-icon>delete</mat-icon>
+            </button>
+          </mat-card-actions>
+        </mat-card>
+      } @empty {
+        <div class="empty-message-container">
+          <p class="empty-message">No hay productos disponibles.</p>
+        </div>
+      }
+    </div>
+  }
+</div>
